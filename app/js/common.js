@@ -1,12 +1,19 @@
 $(document).ready(function () {
-    $('.border-wrapper').on('click', function () {
-        $(this).toggleClass('clicked');
+    $('.element__buy').on('click', function () {
+        $(this).parents('.element').toggleClass('selected');
+        $(this).parents('.element').toggleClass('clicked');
     });
-    $('.border-wrapper').mouseleave(function () {
-        if ($(this).hasClass('clicked')) {
-            $(this).addClass('selected');
+
+    $('.element__wrapper').on('click', function () {
+        $(this).parents('.element').toggleClass('clicked');
+    });
+    $('.element__wrapper').mouseleave(function () {
+        if ($(this).parents('.element').hasClass('clicked')) {
+            $(this).parents('.element').addClass('selected');
         } else {
-            $(this).removeClass('selected');
+            $(this).parents('.element').removeClass('selected');
         }
-    });
+    })
+
 });
+
