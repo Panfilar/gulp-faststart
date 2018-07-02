@@ -1,10 +1,5 @@
-@import "normalize.css";
-
-@font-face {
-  font-family: 'Exo2.0-Thin';
-  src: url('../fonts/Exo2.0-Thin.otf');
-  font-weight: 300;
-}
+@import "../css/normalize.css";
+@import "../css/fonts.css";
 
 @main-color: #1698d9;
 @main-color-light: #2ea8e6;
@@ -19,7 +14,6 @@ h1 {
   width: 100%;
   display: block;
 }
-
 body {
   margin: 0px;
   padding: 0px;
@@ -39,10 +33,7 @@ body {
 }
 
 .wrapper {
-  /*  height:100%;*/
   width: 100%;
-  /*  background-image: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(28, 28, 28, 0) 50%, rgb(0, 0, 0) 100%), url("../img/bg.jpg");
-    background-repeat: repeat;*/
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -153,12 +144,28 @@ a {
       line-height: 24px;
       padding-bottom: 4px;
     }
-    .element__subtitle {
+    .element__top-line-subtitle {
+      height: 33px;
+      position: relative;
       font-size: 16px;
-      margin-top: 0;
-      margin-bottom: 0px;
-      padding-top: 14px;
+      padding-top: 1px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
     }
+    .subtitle__def, .subtitle__select-hover {
+      transition: 0.4s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #1a171b;
+      font-size: 16px;
+    }
+    .subtitle__select-hover {
+      color: @select-color-light;
+      opacity: 0;
+    }
+
     .addition {
       font-family: "Trebuchet MS", Arial, sans-serif;
       line-height: 18px;
@@ -171,9 +178,6 @@ a {
   }
 }
 
-.element__subtitle--selected {
-  display: none;
-}
 
 .element__weight_wrapper {
   width: 80px;
@@ -274,27 +278,18 @@ a {
       opacity: 1;
     }
     &:hover {
-      .element__subtitle {
-        display: none;
-      }
-      .element__subtitle--selected {
-        display: block;
-        color: #d91518;
-        transition: 0.5s;
+      .subtitle {
+        .subtitle__def {
+          opacity: 0;
+        }
+        .subtitle__select-hover {
+          opacity: 1;
+        }
       }
     }
   }
-
-
- /* .element__text--default {
-    display: none;
-  }
-
-  .element__text--selected {
-    display: block !important;
-  }*/
-
 }
+
 
 .element__weight {
   font-size: 42px;
@@ -310,6 +305,9 @@ a {
 }
 
 .disabled {
+  .subtitle__def,.element__title,.element__key-title,.addition{
+    color: #d4d4d4!important;
+  }
   .element__wrapper {
     position: relative;
     -webkit-box-sizing: border-box;
@@ -317,25 +315,18 @@ a {
     padding: 4px;
     border-radius: 10px;
     background-image: linear-gradient(135deg, transparent 33px, @disable-color 33px);
-    cursor: pointer;
-    &:after {
-      transition: opacity 0.4s linear;
-      content: "";
-      border-radius: 8px;
-      position: absolute;
-      background-image: linear-gradient(135deg, transparent 33px, #ffffff 33px);
-      opacity: 0.4;
-      z-index: 9;
-      -webkit-clip-path: polygon(50px 0, 100% 0, 100% 99%, 0 100%, 0 50px);
-      clip-path: polygon(50px 0, 100% 0, 100% 99%, 0 100%, 0 50px);
-    }
+    cursor: not-allowed;
     &:hover, &.hover {
       &:after {
-        opacity: 0.4;
+        opacity: 0.0;
       }
       .element__weight_wrapper {
         background: @disable-color;
       }
+    }
+    .element__content{
+      background-image: linear-gradient(135deg,transparent 31px,rgba(255,255,255,.5) 31px),url(../img/cat.png),linear-gradient(135deg,transparent 31px,#f2f2f2 31px);
+      background-position: 0 0,-28px calc(100% + 93px),0 0;
     }
   }
   .text {
@@ -348,5 +339,3 @@ a {
     height: auto;
   }
 }
-
-
