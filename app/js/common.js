@@ -15,6 +15,8 @@ $(document).ready(function () {
 
     $('.element__wrapper').mouseleave(function () {
         var elNomber = $(this).parents('.element').data('id');
+/*        $('.element__subtitle').stop().fadeTo(200, 1);
+        $('.element__subtitle--selected').stop().fadeTo(200, 0);*/
         if ($(this).parents('.element').hasClass('disabled')) {
         } else if (
             $(this).parents('.element').hasClass('clicked')) {
@@ -26,6 +28,11 @@ $(document).ready(function () {
             $(this).parents('.element').data('id', elNomber).children('p.text').html(textDef);
         }
     });
+
+  /*  $('.element__wrapper').mouseenter(function () {
+        $('.element__subtitle').stop().fadeTo(200, 0);
+        $('.element__subtitle--selected').stop().fadeTo(200, 1);
+    });*/
 
     $('.element.disabled').each(function () {
         $(this).find('.text').html('Печалька, ' + $(this).find('.element__key-title').html() + ' закончился.');
